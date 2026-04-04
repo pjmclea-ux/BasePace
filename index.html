@@ -260,46 +260,79 @@ body { background:var(--bg); color:var(--w); font-family:var(--fb); min-height:1
 .empty { text-align:center; padding:28px 20px; color:var(--g3); font-size:13px; }
 @media(max-width:360px){.pj-t{font-size:22px}.sc-main{font-size:36px}}
 
-/* ── SIDE BY SIDE PROJECTION ── */
-.side-by-side { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
-.side-by-side .dual-panel { margin-bottom:0; }
-.sbp-label { font-family:var(--fd); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--or); margin-bottom:6px; }
-.side-by-side .dual-proj-time { font-size:28px; }
-.side-by-side .dual-proj-range { font-size:10px; margin-bottom:6px; }
-.side-by-side .dual-reasoning { font-size:11px; margin-bottom:4px; }
-.side-by-side .dual-analysis { font-size:11px; }
-.side-by-side .dual-risk { font-size:10px; }
-.side-by-side .factor-row { font-size:10px; padding:3px 6px; }
-.side-by-side .dual-conf-row { gap:5px; margin-bottom:6px; }
+/* ── OVERRUN BANNER ── */
+.overrun-banner { background:rgba(239,68,68,.12); border:1px solid rgba(239,68,68,.4); border-radius:var(--r); padding:10px 14px; margin-bottom:10px; font-family:var(--fd); font-size:13px; font-weight:700; color:var(--rd); letter-spacing:.5px; text-align:center; }
+
+/* ── PROJ SECTION HEADER ── */
+.proj-section-hdr { display:flex; align-items:center; gap:8px; margin:0 0 8px; }
+.proj-section-icon { font-size:14px; }
+.proj-section-title { font-family:var(--fd); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g3); }
+.proj-section-conf { margin-left:auto; display:flex; align-items:center; gap:5px; }
+.proj-section-hdr .conf-track { width:60px; height:4px; background:var(--bg4); border-radius:2px; display:inline-block; overflow:hidden; vertical-align:middle; }
+.proj-section-hdr .conf-fill { height:100%; border-radius:2px; background:var(--gn); transition:width .5s; display:block; }
+.proj-section-hdr .conf-val { font-family:var(--fd); font-size:11px; font-weight:700; color:var(--g2); }
+
+/* ── STAT PROJECTION CARD ── */
+.stat-proj-card { background:var(--bg2); border:1px solid rgba(245,102,0,.2); border-radius:10px; padding:16px; margin-bottom:8px; display:flex; gap:14px; }
+.spc-left { flex:0 0 auto; display:flex; flex-direction:column; gap:4px; }
+.spc-time { font-family:var(--fd); font-size:48px; font-weight:900; line-height:1; color:var(--or); letter-spacing:-1px; }
+.spc-range { font-family:var(--fm); font-size:10px; color:var(--g3); }
+.spc-verdict { font-size:11px; color:var(--g2); line-height:1.5; max-width:160px; margin-top:4px; }
+.spc-right { flex:1; display:flex; flex-direction:column; gap:3px; justify-content:center; }
+.spc-factors { display:flex; flex-direction:column; gap:3px; }
+
+/* ── DELTA ROW ── */
+.delta-row { display:flex; align-items:center; gap:8px; margin:2px 0 8px; }
+.delta-line { flex:1; height:1px; background:rgba(255,255,255,.06); }
+.delta-badge { font-family:var(--fd); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; white-space:nowrap; border:1px solid rgba(255,255,255,.1); color:var(--g2); background:var(--bg3); }
+.delta-badge.ahead { border-color:rgba(123,77,181,.5); color:var(--puL); background:rgba(82,45,128,.15); }
+.delta-badge.behind { border-color:rgba(245,102,0,.4); color:var(--or); background:rgba(245,102,0,.08); }
+.delta-badge.match { border-color:rgba(34,197,94,.4); color:var(--gn); background:rgba(34,197,94,.08); }
+
+/* ── AI PROJECTION CARD ── */
+.ai-proj-card { border-radius:10px; margin-bottom:10px; overflow:hidden; border:1px solid rgba(123,77,181,.35); background:linear-gradient(135deg, rgba(82,45,128,.12) 0%, rgba(30,10,60,.15) 100%); }
+.apc-header { display:flex; align-items:center; justify-content:space-between; padding:14px 16px 12px; border-bottom:1px solid rgba(123,77,181,.2); gap:12px; }
+.apc-title-row { display:flex; align-items:center; gap:10px; }
+.apc-icon-wrap { position:relative; font-size:20px; line-height:1; }
+.apc-pulse { position:absolute; top:-2px; right:-2px; width:7px; height:7px; border-radius:50%; background:var(--puL); animation:pulse 2s infinite; }
+.apc-title { font-family:var(--fd); font-size:13px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--puL); line-height:1; }
+.apc-subtitle { font-family:var(--fm); font-size:10px; color:var(--g3); margin-top:2px; }
+.apc-time-wrap { text-align:right; }
+.apc-time { font-family:var(--fd); font-size:44px; font-weight:900; line-height:1; color:#c4a3ff; letter-spacing:-1px; }
+.apc-range { font-family:var(--fm); font-size:10px; color:rgba(196,163,255,.5); margin-top:1px; }
+.apc-body { padding:12px 16px 14px; display:flex; flex-direction:column; gap:8px; }
+.apc-reasoning { font-size:13px; font-weight:600; color:var(--w); line-height:1.55; }
+.apc-analysis { font-size:12px; color:var(--g1); line-height:1.6; }
+.apc-risk { font-size:11px; color:var(--g3); padding-top:8px; border-top:1px solid rgba(123,77,181,.15); line-height:1.5; }
+
+/* ── AI THINKING (in apc-reasoning) ── */
+.ai-thinking { display:flex; gap:5px; align-items:center; padding:4px 0; }
+.ai-d { width:7px; height:7px; border-radius:50%; background:var(--puL); animation:dp 1.2s infinite; }
+.ai-d:nth-child(2){animation-delay:.2s} .ai-d:nth-child(3){animation-delay:.4s}
+@keyframes dp{0%,80%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1.2)}}
 
 /* ── SCENARIO CARDS ── */
 .scenario-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px; }
-.scenario-card { background:var(--bg2); border:2px solid rgba(255,255,255,.07); border-radius:var(--r); padding:11px 8px; text-align:center; transition:border-color .4s, background .4s; }
-.scenario-card.win-home { border-color:rgba(34,197,94,.6); background:rgba(34,197,94,.06); }
-.scenario-card.win-away { border-color:rgba(34,197,94,.6); background:rgba(34,197,94,.06); }
-.scenario-card.rr-grey { border-color:rgba(85,85,85,.4); opacity:.5; }
-.scenario-card.rr-yellow { border-color:rgba(234,179,8,.7); background:rgba(234,179,8,.05); }
-.scenario-card.rr-green { border-color:rgba(34,197,94,.7); background:rgba(34,197,94,.07); }
-.sc-label { font-family:var(--fd); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--g2); margin-bottom:4px; }
-.sc-time { font-family:var(--fd); font-size:22px; font-weight:900; line-height:1; color:var(--w); }
+.scenario-card { background:var(--bg2); border:2px solid rgba(255,255,255,.07); border-radius:10px; padding:12px 8px 10px; text-align:center; transition:border-color .4s, background .4s; }
+.scenario-card.win-home { border-color:rgba(34,197,94,.6); background:rgba(34,197,94,.07); }
+.scenario-card.win-away { border-color:rgba(34,197,94,.6); background:rgba(34,197,94,.07); }
+.scenario-card.rr-grey { border-color:rgba(85,85,85,.3); opacity:.45; }
+.scenario-card.rr-yellow { border-color:rgba(234,179,8,.7); background:rgba(234,179,8,.06); }
+.scenario-card.rr-green { border-color:rgba(34,197,94,.7); background:rgba(34,197,94,.08); }
+.sc-icon { font-size:14px; margin-bottom:3px; }
+.sc-label { font-family:var(--fd); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--g2); }
+.sc-note { font-size:9px; color:var(--g3); margin-bottom:5px; }
+.sc-time { font-family:var(--fd); font-size:20px; font-weight:900; line-height:1; color:var(--w); }
 .sc-sub { font-size:9px; color:var(--g2); margin-top:3px; line-height:1.4; }
 
-/* ── DUAL PROJECTION PANELS ── */
-.dual-panel { background:var(--bg2); border:1px solid rgba(255,255,255,.08); border-radius:var(--r); padding:14px; margin-bottom:10px; }
-.ai-panel-border { border-color:rgba(123,77,181,.4); background:rgba(82,45,128,.06); }
-.dual-proj-time { font-family:var(--fd); font-size:40px; font-weight:900; line-height:1; color:var(--or); margin-bottom:4px; }
-.dual-proj-range { font-family:var(--fm); font-size:11px; color:var(--g2); margin-bottom:10px; }
-.dual-conf-row { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
-.dual-reasoning { font-size:13px; font-weight:600; color:var(--w); line-height:1.55; margin-bottom:8px; }
-.dual-factors { display:flex; flex-direction:column; gap:4px; margin-top:4px; }
-.factor-row { display:flex; align-items:center; justify-content:space-between; font-size:11px; padding:4px 8px; background:rgba(255,255,255,.03); border-radius:5px; }
+/* ── KEEP THESE for factor rows ── */
+.dual-factors { display:flex; flex-direction:column; gap:3px; }
+.factor-row { display:flex; align-items:center; justify-content:space-between; font-size:10px; padding:3px 7px; background:rgba(255,255,255,.03); border-radius:4px; }
 .factor-label { color:var(--g2); }
 .factor-val { font-family:var(--fm); font-weight:600; }
 .factor-val.pos { color:var(--rd); }
 .factor-val.neg { color:var(--gn); }
 .factor-val.neu { color:var(--g2); }
-.dual-analysis { font-size:13px; color:var(--g1); line-height:1.6; margin-bottom:8px; }
-.dual-risk { font-size:11px; color:var(--g3); border-top:1px solid rgba(255,255,255,.05); padding-top:8px; margin-top:4px; line-height:1.5; }
 
 </style>
 </head>
@@ -414,53 +447,75 @@ body { background:var(--bg); color:var(--w); font-family:var(--fb); min-height:1
 <div class="pane on" id="p-proj">
 
   <!-- LIVE OVERRUN ALERT -->
-  <div id="overrun-alert" style="display:none;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.4);border-radius:var(--r);padding:10px 14px;margin-bottom:10px;font-family:var(--fd);font-size:13px;font-weight:700;color:var(--rd);letter-spacing:.5px;text-align:center"></div>
+  <div id="overrun-alert" style="display:none" class="overrun-banner"></div>
 
-  <!-- SIDE-BY-SIDE: STAT + AI -->
-  <div class="sh">📊 Statistical Model
-    <span id="ai-status-badge" style="margin-left:auto;font-family:var(--fm);font-size:10px;font-weight:400;color:var(--g3);letter-spacing:0">🤖 AI: ready</span>
+  <!-- STAT MODEL — full width -->
+  <div class="proj-section-hdr">
+    <div class="proj-section-icon">📊</div>
+    <div class="proj-section-title">Statistical Model</div>
+    <div class="proj-section-conf"><span class="conf-track" style="width:80px;display:inline-block;vertical-align:middle;margin-right:5px"><span class="conf-fill" id="conf-fill" style="width:0%"></span></span><span class="conf-val" id="conf-val">—</span></div>
   </div>
-  <div class="side-by-side">
-    <!-- STAT PANEL -->
-    <div class="dual-panel" id="stat-panel">
-      <div class="sbp-label">📊 Stats</div>
-      <div class="dual-proj-time" id="stat-proj-time">--:--</div>
-      <div class="dual-proj-range" id="stat-proj-range"></div>
-      <div class="dual-conf-row">
-        <div class="conf-l">Confidence</div>
-        <div class="conf-track"><div class="conf-fill" id="conf-fill" style="width:0%"></div></div>
-        <div class="conf-val" id="conf-val">—</div>
-      </div>
-      <div class="dual-reasoning" id="stat-reasoning"><span style="color:var(--g3)">Log 2+ half-innings.</span></div>
-      <div class="dual-factors" id="stat-factors"></div>
+  <div class="stat-proj-card" id="stat-panel">
+    <div class="spc-left">
+      <div class="spc-time" id="stat-proj-time">--:--</div>
+      <div class="spc-range" id="stat-proj-range"></div>
+      <div class="spc-verdict" id="stat-reasoning"><span style="color:var(--g3)">Log 2+ half-innings.</span></div>
     </div>
-    <!-- AI PANEL -->
-    <div class="dual-panel ai-panel-border" id="ai-panel">
-      <div class="sbp-label" style="color:var(--puL)">🤖 AI</div>
-      <div class="dual-proj-time" id="ai-proj-time" style="color:var(--puL)">--:--</div>
-      <div class="dual-proj-range" id="ai-proj-range"></div>
-      <div style="height:22px"></div><!-- spacer to align with conf bar -->
-      <div class="dual-reasoning" id="ai-proj-reasoning"><span style="color:var(--g3)">Updates after each half-inning.</span></div>
-      <div class="dual-analysis" id="ai-analysis-text"></div>
-      <div class="dual-risk" id="ai-risk-text"></div>
+    <div class="spc-right">
+      <div class="spc-factors" id="stat-factors"></div>
+    </div>
+  </div>
+
+  <!-- DELTA INDICATOR -->
+  <div class="delta-row" id="delta-row" style="display:none">
+    <div class="delta-line"></div>
+    <div class="delta-badge" id="delta-badge">AI —</div>
+    <div class="delta-line"></div>
+  </div>
+
+  <!-- AI PANEL — full width, distinct design -->
+  <div class="ai-proj-card" id="ai-panel">
+    <div class="apc-header">
+      <div class="apc-title-row">
+        <div class="apc-icon-wrap"><div class="apc-pulse"></div>🤖</div>
+        <div>
+          <div class="apc-title">AI Projection</div>
+          <div class="apc-subtitle" id="ai-status-badge">ready</div>
+        </div>
+      </div>
+      <div class="apc-time-wrap">
+        <div class="apc-time" id="ai-proj-time">--:--</div>
+        <div class="apc-range" id="ai-proj-range"></div>
+      </div>
+    </div>
+    <div class="apc-body">
+      <div class="apc-reasoning" id="ai-proj-reasoning"><span style="color:var(--g3)">Updates after each half-inning.</span></div>
+      <div class="apc-analysis" id="ai-analysis-text"></div>
+      <div class="apc-risk" id="ai-risk-text"></div>
     </div>
   </div>
 
   <!-- END TIME SCENARIOS -->
-  <div class="sh">End Time Scenarios</div>
+  <div class="sh" style="margin-top:14px">End Time Scenarios</div>
   <div class="scenario-grid">
     <div class="scenario-card" id="sc-home">
+      <div class="sc-icon">🏠</div>
       <div class="sc-label" id="sc-home-label">Home Win</div>
+      <div class="sc-note">thru top 9</div>
       <div class="sc-time" id="pj-9">--:--</div>
       <div class="sc-sub" id="pj-9s"></div>
     </div>
     <div class="scenario-card" id="sc-away">
+      <div class="sc-icon">✈️</div>
       <div class="sc-label" id="sc-away-label">Away Win</div>
+      <div class="sc-note">full 9 inn</div>
       <div class="sc-time" id="pj-n9">--:--</div>
       <div class="sc-sub" id="pj-n9s"></div>
     </div>
     <div class="scenario-card" id="sc-rr">
+      <div class="sc-icon">🔟</div>
       <div class="sc-label">Run Rule</div>
+      <div class="sc-note">after bot 7</div>
       <div class="sc-time" id="pj-rr">--:--</div>
       <div class="sc-sub" id="pj-rrs"></div>
     </div>
@@ -598,7 +653,7 @@ body { background:var(--bg); color:var(--w); font-family:var(--fb); min-height:1
 
 <script>
 // ══ CONFIG ════════════════════════════════════════════════════════════════════
-const PW      = "tigers";  // ← change to your new password
+const PW      = "tigers25";  // ← change to your new password
 const DB_PATH = "cu_pace3";  // Firebase Realtime DB path for all game data
 const LK      = "cu_v7";     // new localStorage key
 
@@ -923,12 +978,12 @@ function setAIStatus(status, msg){
   const badge=document.getElementById('ai-status-badge');
   if(!badge)return;
   const cfg={
-    idle:        {color:'var(--g3)',   text:'🤖 AI: ready'},
-    loading:     {color:'var(--or)',   text:'🤖 AI: thinking...'},
-    ok:          {color:'var(--gn)',   text:'🤖 AI: updated '+(msg||'')},
-    error:       {color:'var(--rd)',   text:'🤖 AI: '+(msg||'error')},
-    rate_limited:{color:'var(--or)',   text:'🤖 AI: cooling down'},
-    no_key:      {color:'var(--g3)',   text:'🤖 AI: proxy not configured'},
+    idle:        {color:'var(--g3)',   text:'ready'},
+    loading:     {color:'var(--or)',   text:'thinking...'},
+    ok:          {color:'var(--gn)',   text:'updated '+(msg||'')},
+    error:       {color:'var(--rd)',   text:(msg||'error')},
+    rate_limited:{color:'var(--or)',   text:'cooling down'},
+    no_key:      {color:'var(--g3)',   text:'proxy not configured'},
   };
   const c=cfg[status]||cfg.idle;
   badge.style.color=c.color; badge.textContent=c.text;
@@ -990,63 +1045,63 @@ async function runAI(){
   const avgOf=arr=>arr.length?p2t(arr.reduce((a,b)=>a+b,0)/arr.length):'N/A';
   const sorted=[...g.halfInnings].sort((a,b)=>b.durMs-a.durMs);
 
-  const trendDesc=m.trendSlope>5000?`SLOWING (+${Math.round(m.trendSlope/1000)}s/half trend)`
-    :m.trendSlope<-5000?`SPEEDING UP (${Math.round(m.trendSlope/1000)}s/half trend)`:'STEADY';
-
   const recent4=g.halfInnings.slice(-4);
   const recent4Avg=recent4.length>=3?recent4.reduce((a,h)=>a+h.durMs,0)/recent4.length:null;
-  const momentumDesc=recent4Avg?`Recent 4 halves avg ${p2t(recent4Avg)} vs overall ${p2t(m.avgMs)} (${recent4Avg>m.avgMs*1.1?'SLOWING recently':recent4Avg<m.avgMs*0.9?'SPEEDING UP recently':'consistent'})`:null;
 
   const seasonCtx=S.history.length>=2
-    ?`Prior season (${S.history.length} games): avg game ${S.history.filter(x=>x.totalMs>0).length?p2h(S.history.filter(x=>x.totalMs>0).reduce((a,b)=>a+b.totalMs,0)/S.history.filter(x=>x.totalMs>0).length):'N/A'} | avg half ${m.seasonAvg?p2t(m.seasonAvg):'N/A'} | run rules: ${S.history.filter(x=>x.runRule==='Yes').length} | vs ${g.away}: ${S.history.filter(x=>x.away===g.away||x.home===g.away).length} games`
-    :'No prior season data.';
+    ?`Prior season (${S.history.length} games): avg game ${S.history.filter(x=>x.totalMs>0).length?p2h(S.history.filter(x=>x.totalMs>0).reduce((a,b)=>a+b.totalMs,0)/S.history.filter(x=>x.totalMs>0).length):'N/A'} | avg half-inning ${m.seasonAvg?p2t(m.seasonAvg):'N/A'} | run rules: ${S.history.filter(x=>x.runRule==='Yes').length} | prior games vs ${g.away}: ${S.history.filter(x=>x.away===g.away||x.home===g.away).length}`
+    :'No prior season data available.';
 
-  const statProjTime=fmtT(new Date(m.pFull));
-  const spread=m.avgMs*Math.sqrt(Math.max(18-n,1))*0.18;
+  // Fully independent prompt — no stat model output given to AI
+  const prompt=`You are an expert college baseball pace-of-play analyst. Using only the raw game data below, project when this game will end. Do NOT use any pre-computed projections — derive your own estimate from scratch using your knowledge of college baseball patterns.
 
-  const prompt=`You are an expert college baseball pace-of-play analyst. Analyze this live game and project its end time.
+GAME INFO
+${g.away} @ ${g.home} | Date: ${g.date} | First pitch: ${g.startTime}
+Current: ${hl(g.curIdx)}${m.extra?' ⚡ EXTRA INNINGS':''} | Elapsed: ${elapsedMin} min
+Score: ${g.home} ${g.homeScore} – ${g.away} ${g.awayScore} | ${leader==='tied'?'Game is TIED':`${leader} leads by ${margin} run${margin!==1?'s':''}`}
+Half-innings completed: ${n} of 18 expected
 
-═══ GAME ═══
-${g.away} @ ${g.home} | ${g.date} | First pitch: ${g.startTime}
-Score: ${g.home} ${g.homeScore} – ${g.away} ${g.awayScore} | ${leader==='tied'?'TIED':`${leader} leads by ${margin}`}
-Now: ${hl(g.curIdx)}${m.extra?' ⚡ EXTRAS':''} | Elapsed: ${elapsedMin}min | Halves done: ${n}
+RAW HALF-INNING DATA (every half-inning logged, in order)
+${g.halfInnings.map(h=>`  ${hl(h.idx).padEnd(4)}: ${p2t(h.durMs).padStart(5)} duration | ${h.runs} run${h.runs!==1?'s':''} scored`).join('\n')}
 
-═══ HALF-INNING LOG ═══
-${g.halfInnings.map(h=>`${hl(h.idx).padEnd(4)}: ${p2t(h.durMs).padStart(5)} | ${h.runs}R${m.outlierSet.has(g.halfInnings.indexOf(h))?' [OUTLIER]':''}`).join('\n')}
+PACE BREAKDOWN
+Early innings (1-3) avg duration : ${avgOf(earlyArr)}
+Mid innings   (4-6) avg duration : ${avgOf(midArr)}
+Late innings  (7+)  avg duration : ${avgOf(lateArr)}
+Top half avg : ${m.topHalves.length?p2t(m.topHalves.reduce((a,h)=>a+h.durMs,0)/m.topHalves.length):'N/A'}
+Bottom half avg: ${m.botHalves.length?p2t(m.botHalves.reduce((a,h)=>a+h.durMs,0)/m.botHalves.length):'N/A'}
+Longest half : ${hl(sorted[0].idx)} — ${p2t(sorted[0].durMs)} (${sorted[0].runs} runs)
+Shortest half: ${hl(sorted[sorted.length-1].idx)} — ${p2t(sorted[sorted.length-1].durMs)} (${sorted[sorted.length-1].runs} runs)
+Total runs scored: ${m.totalRuns} (${m.avgRunsPerHalf.toFixed(2)} per half-inning)
+${recent4Avg?`Recent momentum: last 4 halves averaged ${p2t(recent4Avg)}`:''}
 
-═══ PACE ═══
-Early(1-3): ${avgOf(earlyArr)} | Mid(4-6): ${avgOf(midArr)} | Late(7+): ${avgOf(lateArr)}
-Top avg: ${m.topHalves.length?p2t(m.topHalves.reduce((a,h)=>a+h.durMs,0)/m.topHalves.length):'N/A'} | Bot avg: ${m.botHalves.length?p2t(m.botHalves.reduce((a,h)=>a+h.durMs,0)/m.botHalves.length):'N/A'}
-Longest: ${hl(sorted[0].idx)} ${p2t(sorted[0].durMs)} (${sorted[0].runs}R) | ${m.avgRunsPerHalf.toFixed(2)} R/half
-Trend: ${trendDesc}${momentumDesc?'\nMomentum: '+momentumDesc:''}
-Outliers removed: ${m.outlierSet.size}
-
-═══ STAT MODEL ═══
-Adj avg: ${p2t(m.avgMs)} | Run adj: +${p2t(m.runAdj)}/half | Trend adj: ${m.trendAdj>=0?'+':''}${Math.round(m.trendAdj/60000*10)/10}min
-Blowout: ${m.blowoutAdj<0?Math.round(m.blowoutAdj/60000*10)/10+'min/half':'none'} | Close late: ${m.tightLateAdj>0?'+'+p2t(m.tightLateAdj)+'/half':'none'}
-Projected end: ${statProjTime} | Range: ${fmtT(new Date(m.pFull-spread))}–${fmtT(new Date(m.pFull+spread))} | Confidence: ${m.confidence}%
 ${seasonCtx}
 
-═══ BASEBALL CONTEXT ═══
-- D1 college avg half: 11-13 min. Full games 2:45–3:30.
-- Each pitching change: ~3 min. Expect more in 7th+ of close games.
-- Close game (≤1 run) into 7th+: almost certainly goes 9 innings, extras risk.
-- Run rule (10+ after 7 innings): game ends immediately.
-- No bot 9 if home team leads after top 9: saves ~12 min.
-- Extra innings use runner-on-2nd: ~9-11 min each.
-- 3+ run innings often involve pitching changes that compound time.
-- If recent halves are trending longer, remaining halves likely will too.
+COLLEGE BASEBALL KNOWLEDGE TO APPLY
+- D1 college baseball half-inning average: 11-13 min. Full 9-inning games typically run 2:45–3:30.
+- Each pitching change adds ~3 min. Expect 1-2 changes in early innings, 3-5 in late innings of close games.
+- High-scoring half-innings (3+ runs) strongly correlate with pitching changes — compound effect on time.
+- A game tied or within 1 run entering the 7th inning almost always plays 9 full innings and carries extras risk.
+- Run rule (10+ run margin after 7 innings in college): game ends immediately after the half-inning qualifies.
+- Home team does NOT bat in the bottom of the 9th if they're winning — saves ~11-13 min.
+- Extra innings use runner-on-2nd base rule: typically 9-11 min per inning vs 12-13 for normal.
+- If recent halves are consistently getting longer, the remaining ones likely will too (fatigue, bullpen).
+- First-time-through lineup (innings 1-3) often runs slower as starters find their rhythm.
 
-Evaluate the stat model's ${statProjTime} projection. Adjust only if there's a clear baseball reason. Be specific to THIS game's data.
+YOUR TASK
+1. Calculate your own estimate of the average half-inning duration for REMAINING innings based on the raw data and baseball context above.
+2. Factor in: scoring trends, game situation (close game vs blowout), momentum (are innings getting longer or shorter?), and likely game length (9 innings? extras? run rule?).
+3. Project when the game ends. Be willing to diverge significantly from simple averages if the situation warrants it.
+4. Give a meaningful range reflecting real uncertainty.
 
-Reply ONLY with valid JSON, no markdown:
-{"projected_end":"H:MM PM","range_early":"H:MM PM","range_late":"H:MM PM","projection_reasoning":"One sentence: your projection, whether it agrees with or adjusts ${statProjTime}, and the single biggest reason why.","pace_analysis":"2-3 sentences: pace verdict for this specific game, dominant factor, what to watch.","risk_factors":"One sentence on the most likely scenario that changes this projection — be specific."}`;
+Reply ONLY with valid JSON, absolutely no markdown or preamble:
+{"projected_end":"H:MM PM","range_early":"H:MM PM","range_late":"H:MM PM","projection_reasoning":"One sentence explaining your projected end time — cite specific data from this game.","pace_analysis":"2-3 sentences: your read on this game's pace, the dominant factor driving it, and what to watch in remaining innings.","risk_factors":"One sentence on the specific scenario most likely to push this game significantly later or end it sooner.","confidence":"low|medium|high"}`;
 
   try {
     const r=await fetch(GROQ_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':`Bearer ${groqKey}`},
-      body:JSON.stringify({model:GROQ_MODEL,messages:[{role:'user',content:prompt}],max_tokens:450,temperature:0.25})
+      body:JSON.stringify({model:GROQ_MODEL,messages:[{role:'user',content:prompt}],max_tokens:500,temperature:0.4})
     });
     if(r.status===429){setAIStatus('rate_limited');aiLastCalledMs=Date.now()-AI_MIN_INTERVAL+120000;return;}
     if(!r.ok){const eb=await r.json().catch(()=>({}));setAIStatus('error',(eb?.error?.message||'HTTP '+r.status).substring(0,40));return;}
@@ -1058,12 +1113,49 @@ Reply ONLY with valid JSON, no markdown:
 
     aiHasProjection=true;
     setAIStatus('ok',fmtT(new Date()));
+
     document.getElementById('ai-proj-time').textContent=parsed.projected_end||'--:--';
     document.getElementById('ai-proj-range').textContent=parsed.range_early&&parsed.range_late?`${parsed.range_early} – ${parsed.range_late}`:'';
     document.getElementById('ai-proj-reasoning').textContent=parsed.projection_reasoning||'';
     document.getElementById('ai-analysis-text').textContent=parsed.pace_analysis||'';
     document.getElementById('ai-risk-text').textContent=parsed.risk_factors?`⚠ ${parsed.risk_factors}`:'';
+
+    // Delta badge — compare AI vs stat model
+    if(parsed.projected_end&&m){
+      const aiMs=parseTimeToMs(parsed.projected_end,g.startMs);
+      if(aiMs){
+        const diffMin=Math.round((aiMs-m.pFull)/60000);
+        const dr=document.getElementById('delta-row');
+        const db=document.getElementById('delta-badge');
+        if(dr&&db){
+          dr.style.display='flex';
+          if(Math.abs(diffMin)<=3){
+            db.textContent='AI agrees with model';db.className='delta-badge match';
+          } else if(diffMin>0){
+            db.textContent=`AI is +${diffMin}m later than model`;db.className='delta-badge behind';
+          } else {
+            db.textContent=`AI is ${Math.abs(diffMin)}m earlier than model`;db.className='delta-badge ahead';
+          }
+        }
+      }
+    }
   } catch(e){setAIStatus('error',(e.message||'network').substring(0,40));}
+}
+
+// Parse "H:MM PM" time string into a ms timestamp anchored near startMs
+function parseTimeToMs(timeStr, refMs){
+  try{
+    const m=timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+    if(!m)return null;
+    let h=parseInt(m[1]),mn=parseInt(m[2]);
+    const ap=m[3].toUpperCase();
+    if(ap==='PM'&&h!==12)h+=12;
+    if(ap==='AM'&&h===12)h=0;
+    const d=new Date(refMs);
+    d.setHours(h,mn,0,0);
+    if(d.getTime()<refMs-3600000)d.setDate(d.getDate()+1);
+    return d.getTime();
+  }catch(e){return null;}
 }
 
 // ── RENDER STAT MODEL PANEL ───────────────────────────────────────────────────
@@ -1083,7 +1175,7 @@ function renderStatPanel(g, m){
   document.getElementById('stat-proj-time').style.color=paceColor;
   document.getElementById('stat-proj-range').textContent=`${earlyEnd} – ${lateEnd} range`;
 
-  // Confidence bar
+  // Confidence bar (in section header)
   document.getElementById('conf-fill').style.width=`${m.confidence}%`;
   document.getElementById('conf-fill').style.background=m.confidence>70?'var(--gn)':m.confidence>45?'var(--or)':'var(--rd)';
   document.getElementById('conf-val').textContent=`${m.confidence}%`;
