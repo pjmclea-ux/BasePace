@@ -1576,9 +1576,11 @@ function renderChart(m){
           title:{display:true,text:'Duration (min)',color:'#555',font:{family:"'Barlow Condensed',sans-serif",size:10,weight:'700'}},
           ticks:{...CHART_DEFAULTS.scales.y.ticks, callback:v=>`${v}m`}
         },
-        y2:{
+    y2:{
           type:'linear',
           position:'right',
+          min: Math.min(...projLine.filter(v=>v!=null)) - 30,
+          max: Math.max(...projLine.filter(v=>v!=null)) + 30,
           grid:{drawOnChartArea:false},
           border:{color:'rgba(255,255,255,.06)'},
           ticks:{
